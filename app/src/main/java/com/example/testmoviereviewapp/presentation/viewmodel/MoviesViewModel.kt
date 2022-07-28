@@ -1,22 +1,22 @@
 package com.example.testmoviereviewapp.presentation.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.testmoviereviewapp.domain.model.MovieModel
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import com.example.testmoviereviewapp.data.repository.RepositoryImpl
 import com.example.testmoviereviewapp.domain.usecase.MoviesReviewsUseCase
-import kotlinx.coroutines.launch
+import com.example.testmoviereviewapp.presentation.paging.MoviesPagingSource
 
-class MoviesViewModel(private val moviesReviewsUseCase: MoviesReviewsUseCase) : ViewModel() {
+class MoviesViewModel : ViewModel() {
 
+    private val repositoryImpl = RepositoryImpl()
 
-    val moviesLiveData = MutableLiveData<List<MovieModel>>()
+    private val moviesReviewsUseCase = MoviesReviewsUseCase(repositoryImpl)
 
-    fun moviesReviews() {
-        viewModelScope.launch {
-            val list = moviesReviewsUseCase.execute()
-            moviesLiveData.postValue(list)
-        }
-    }
+    val flow = Pager(PagingConfig(pageSize = 20)) { MoviesPagingSource(moviesReviewsUseCase) }
+        .flow
+        .cachedIn(viewModelScope)
 
 }

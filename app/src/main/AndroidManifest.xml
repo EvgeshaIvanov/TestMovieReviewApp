@@ -15,7 +15,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.SplashScreenActivity"
-            android:theme="@style/Theme.TestMovieReviewApp.SplashScreen"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

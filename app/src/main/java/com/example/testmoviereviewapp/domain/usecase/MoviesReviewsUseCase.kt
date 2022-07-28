@@ -5,6 +5,6 @@ import com.example.testmoviereviewapp.domain.repository.Repository
 
 class MoviesReviewsUseCase(private val repository: Repository) {
 
-    suspend fun execute(): List<MovieModel> = repository.moviesReviews()
+    suspend fun execute(page: Int): List<MovieModel> = repository.moviesReviews(page)
 
 }

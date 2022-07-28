@@ -4,6 +4,6 @@ import com.example.testmoviereviewapp.domain.model.MovieModel
 
 interface Repository {
 
-    suspend fun moviesReviews(): List<MovieModel>
+    suspend fun moviesReviews(page: Int): List<MovieModel>
 
 }
