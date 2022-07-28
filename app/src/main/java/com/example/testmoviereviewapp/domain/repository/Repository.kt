@@ -1,9 +1,11 @@
 package com.example.testmoviereviewapp.domain.repository
 
+import androidx.lifecycle.LiveData
+import androidx.paging.PagingData
 import com.example.testmoviereviewapp.domain.model.MovieModel
 
 interface Repository {
 
-    suspend fun moviesReviews(page: Int): List<MovieModel>
+    fun moviesReviews(): LiveData<PagingData<MovieModel>>
 
 }

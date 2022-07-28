@@ -1,25 +1,26 @@
-package com.example.testmoviereviewapp.presentation.paging
+package com.example.testmoviereviewapp.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.testmoviereviewapp.data.network.ApiService
 import com.example.testmoviereviewapp.domain.model.MovieModel
-import com.example.testmoviereviewapp.domain.usecase.MoviesReviewsUseCase
+import com.example.testmoviereviewapp.utils.Constants.MOVIES_ITEMS
+import com.example.testmoviereviewapp.utils.Constants.PAGE
 
-private const val PAGE = 0
-private const val MOVIES_ITEMS = 20
 
 class MoviesPagingSource(
-    private val useCase: MoviesReviewsUseCase
+    private val apiService: ApiService
 ) : PagingSource<Int, MovieModel>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieModel> {
         val pageIndex = params.key ?: PAGE
         return try {
-            val response = useCase.execute(page = pageIndex)
+            val response = apiService.moviesReviews(pageIndex)
+            val movies = response.movieModel
             return LoadResult.Page(
-                data = response,
+                data = movies,
                 prevKey = if (pageIndex == 0) null else pageIndex - 1,
-                nextKey = if (response.size < MOVIES_ITEMS) null else pageIndex + 1
+                nextKey = if (movies.size < MOVIES_ITEMS) null else pageIndex + 1
             )
         } catch (e: Exception) {
             LoadResult.Error(throwable = e)
