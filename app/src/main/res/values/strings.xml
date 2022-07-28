@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TestMovieReviewApp</string>
+    <string name="movie_name">Movie Name</string>
+    <string name="description_text">Katie Holmes writes, directs and stars in this minor-key rom-com set in 2020.</string>
 </resources>
