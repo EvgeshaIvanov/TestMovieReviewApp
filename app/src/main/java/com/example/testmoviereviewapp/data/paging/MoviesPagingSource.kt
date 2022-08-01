@@ -19,8 +19,8 @@ class MoviesPagingSource(
             val movies = response.movieModel
             return LoadResult.Page(
                 data = movies,
-                prevKey = if (pageIndex == 0) null else pageIndex - 1,
-                nextKey = if (movies.size < MOVIES_ITEMS) null else pageIndex + 1
+                prevKey = if (pageIndex == 0) null else pageIndex - 20,
+                nextKey = if (movies.size < MOVIES_ITEMS) null else pageIndex + 20
             )
         } catch (e: Exception) {
             LoadResult.Error(throwable = e)
