@@ -8,7 +8,7 @@ import com.example.testmoviereviewapp.utils.Constants.MOVIES_ITEMS
 import com.example.testmoviereviewapp.utils.Constants.PAGE
 
 /**
- * Подправил пагинацию
+ * 01.08. Подправил пагинацию
  */
 
 class MoviesPagingSource(
