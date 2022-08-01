@@ -7,6 +7,9 @@ import com.example.testmoviereviewapp.domain.model.MovieModel
 import com.example.testmoviereviewapp.utils.Constants.MOVIES_ITEMS
 import com.example.testmoviereviewapp.utils.Constants.PAGE
 
+/**
+ * Подправил пагинацию
+ */
 
 class MoviesPagingSource(
     private val apiService: ApiService
